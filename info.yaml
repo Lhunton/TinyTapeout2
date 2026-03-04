@@ -1,11 +1,11 @@
 # Tiny Tapeout project information (Wokwi project)
 project:
-  wokwi_id:     457569230239633409      # Set this to the ID of your Wokwi project (the number from the project's URL)
-  title:        "TinyTapeoutFullAdderL"      # Project title
+  wokwi_id:     0      # Set this to the ID of your Wokwi project (the number from the project's URL)
+  title:        "8BitMultiplier"      # Project title
   author:       "LewisHunton"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "its a full adder and it makes an L... L for Lewis"      # One line description of what your project does
-  language:     "Wokwi" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  description:  "8bitMultiplier"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     10000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
@@ -16,24 +16,24 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "FAInputA"
-  ui[1]: "FAInputB"
-  ui[2]: "FACin"
-  ui[3]: "Just a switch... I needed 3 bars to make an L"
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "A0"
+  ui[1]: "A1"
+  ui[2]: "A2"
+  ui[3]: "B1"
+  ui[4]: "B2"
+  ui[5]: "B3"
+  ui[6]: "Clk"
+  ui[7]: "Enable"
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: "FAOut"
-  uo[4]: "FACarry"
-  uo[5]: "TheThirdBar"
+  uo[0]: "Out1"
+  uo[1]: "Out2"
+  uo[2]: "Out3"
+  uo[3]: "Out4"
+  uo[4]: "Out5"
+  uo[5]: "Out6"
   uo[6]: ""
-  uo[7]: ""
+  uo[7]: "Valid"
 
   # Bidirectional pins
   uio[0]: ""

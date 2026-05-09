@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
+  title:        "tt_um_LH_TapeoutMultiplier"      # Project title
   author:       "Lewis Hunton"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "8-bit Baugh-Wooley multiplier developed as part of my 3rd year neural network project adapted for restricted IO access"      # One line description of what your project does

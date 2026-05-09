@@ -21,7 +21,7 @@
 module tt_um_LH_TapeoutMultiplier(
 	input wire [7:0] ui_in,
 	input wire [7:0] uio_in,
-	output reg [7:0] uo_out,
+	output wire [7:0] uo_out,
 	output wire [7:0] uio_out,
 	output wire [7:0] uio_oe,
 	input wire ena,
@@ -57,12 +57,19 @@ module tt_um_LH_TapeoutMultiplier(
 	end
 	 
 	 //outputs
-	always@(posedge clk) begin
-		if(Valid) begin
-			if(Output_select == 0)
-				uo_out <= Product [7:0];
-		end
+
+	always @(posedge clk or negedge rst_n) begin
+	    if (!rst_n) begin
+	        uo_out_reg <= 8'd0;
+	    end else if (Valid) begin
+	        if (Output_select == 0)
+	            uo_out_reg <= Product[7:0];
+	    end
 	end
+
+	
+	reg [7:0] uo_out_reg;
+	assign uo_out = uo_out_reg;
 
 	assign uio_out = Product[15:8];
 	assign uio_oe = 8'HFF;

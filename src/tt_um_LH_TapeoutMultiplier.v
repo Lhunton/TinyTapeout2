@@ -57,7 +57,7 @@ module tt_um_LH_TapeoutMultiplier(
 	end
 	 
 	 //outputs
-	 always@(posedge ) begin
+	always@(posedge clk) begin
 		if(Valid) begin
 			if(Output_select == 0)
 				uo_out <= Product [7:0];

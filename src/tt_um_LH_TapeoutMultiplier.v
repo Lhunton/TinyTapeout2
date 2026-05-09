@@ -24,9 +24,9 @@ module TapeoutMultiplier(
 	output reg [7:0] uo_out,
 	output wire [7:0] uio_out,
 	output wire [7:0] uio_oe,
-	input wire enable,
+	input wire ena,
 	input wire clk,
-	input wire Reset
+	input wire rst_n
     );
 	 
 	 //internal regs
@@ -39,8 +39,8 @@ module TapeoutMultiplier(
 	 reg Start;
 	 
 	 //control logic
-	 always@(posedge clk or negedge Reset) begin
-		if(Reset) begin
+	 always@(posedge clk or negedge rst_n) begin
+		 if(!rst_n) begin
 			A_reg <= 0;
 			B_reg <= 0;
 			Start <= 0;
@@ -57,7 +57,7 @@ module TapeoutMultiplier(
 	end
 	 
 	 //outputs
-	 always@(posedge clk) begin
+	 always@(posedge ) begin
 		if(Valid) begin
 			if(Output_select == 0)
 				uo_out <= Product [7:0];

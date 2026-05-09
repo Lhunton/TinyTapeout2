@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module TapeoutMultiplier(
+module tt_um_LH_TapeoutMultiplier(
 	input wire [7:0] ui_in,
 	input wire [7:0] uio_in,
 	output reg [7:0] uo_out,

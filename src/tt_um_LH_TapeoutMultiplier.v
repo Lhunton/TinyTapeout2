@@ -64,7 +64,7 @@ module tt_um_LH_TapeoutMultiplier(
 		end
 	end
 
-	assign uio_out = Valid ? Product[15:8] : 8'b0;
+	assign uio_out = Product[15:8];
 	assign uio_oe = 8'HFF;
 	 
 	 

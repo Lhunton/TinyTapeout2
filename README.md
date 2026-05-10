@@ -1,42 +1,45 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+## How it works
+This project implements an 8-bit signed baugh-wooley multiplier.
+The two input operands are provided through:
 
-- [Read the documentation for project](docs/info.md)
+ui_in -> first operand (A), 
+uio_in -> second operand (B)
 
-## What is Tiny Tapeout?
+The Baugh-Wooley Architecture
+The multiplier generates partial products using bitwise AND operations between the bits of A and B. These partial products are arranged in a grid and shifted according to their bit positions.
+The shifted partial products are then summed using a tree reduction structure to produce the final 16-bit result
+A correction bit pattern is then applied to correct for two-complement signed multiplicaiton.
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+The final product is split across the outputs:
 
-To learn more and get started, visit https://tinytapeout.com.
+uo_out → lower 8 bits of the result, 
+uio_out → upper 8 bits of the result
 
-## Set up your Verilog project
+## How to test
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+To test the multiplier:
 
-The GitHub action will automatically build the ASIC files using [LibreLane](https://www.zerotoasiccourse.com/terminology/librelane/).
+Apply two 8-bit signed values:
 
-## Enable GitHub actions to build the results page
+Put operand A on ui_in, 
+Put operand B on uio_in
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+Wait for one clock cycle
 
-## Resources
+Read the result:
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+Lower 8 bits from uo_out
+Upper 8 bits from uio_out
 
-## What next?
+Combine them to get the full 16-bit signed result
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+Example:
+
+Input:
+ui_in = 20, uio_in = 30
+Output:
+{uio_out, uo_out} = 600
+
+The design supports both positive and negative values using two’s complement representation.

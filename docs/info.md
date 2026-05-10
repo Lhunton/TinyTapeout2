@@ -11,7 +11,7 @@ You can also include images in this folder and reference them in the markdown. E
 This project implements an 8-bit signed baugh-wooley multiplier.
 The two input operands are provided through:
 
-ui_in -> first operand (A)
+ui_in -> first operand (A), 
 uio_in -> second operand (B)
 
 The Baugh-Wooley Architecture
@@ -21,7 +21,7 @@ A correction bit pattern is then applied to correct for two-complement signed mu
 
 The final product is split across the outputs:
 
-uo_out → lower 8 bits of the result
+uo_out → lower 8 bits of the result, 
 uio_out → upper 8 bits of the result
 
 ## How to test
@@ -30,7 +30,7 @@ To test the multiplier:
 
 Apply two 8-bit signed values:
 
-Put operand A on ui_in
+Put operand A on ui_in, 
 Put operand B on uio_in
 
 Wait for one clock cycle
